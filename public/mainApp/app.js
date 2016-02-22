@@ -8,6 +8,10 @@ function MainRouter($stateProvider, $urlRouterProvider){
     url: "/",
     templateUrl: "/mainApp/states/home.html",
   })
+  .state('register', {
+    url: "/register",
+    templateUrl: "/mainApp/states/register.html",
+  }),
 
 
   $urlRouterProvider.otherwise('/');

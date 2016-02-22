@@ -2,8 +2,12 @@ angular
   .module('golf-app')
   .controller('tournamentController', TournamentController);
 
-function TournamentController($scope , $window){
+TournamentController.$inject = ['$scope', '$http']
 
+function TournamentController($scope, $http){
+
+	var self = this;
+	self.name = "name"
   
 
 }
