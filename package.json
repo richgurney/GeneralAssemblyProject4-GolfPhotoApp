@@ -1,0 +1,22 @@
+{
+  "name": "buzz_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start" : "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "ejs": "^2.4.1",
+    "express": "^4.13.3",
+    "express-ejs-layouts": "^2.0.0",
+    "http": "0.0.0",
+    "mongoose": "^4.4.3",
+    "mongoose-random": "^0.1.1",
+    "morgan": "^1.6.1"
+  }
+}
