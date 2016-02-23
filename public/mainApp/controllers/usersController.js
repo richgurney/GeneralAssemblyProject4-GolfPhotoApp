@@ -16,11 +16,21 @@ function UsersController(User, TokenService, $state, CurrentUser){
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
+  self.getCurrentUser= getCurrentUser;
+  
 
+  function getCurrentUser(){
+    if(CurrentUser.currentUser()){
+      self.currentUser   = CurrentUser.currentUser().local;
+    }
+  }
+  
   function getUsers() {
     User.query(function(data){
-      console.log(data)
+      
       self.all = data;
+      // console.log(self.all[0].local.email)
+      // console.log(self.currentUser)
     });
   }
 
@@ -29,6 +39,7 @@ function UsersController(User, TokenService, $state, CurrentUser){
     if (token) {
       self.getUsers();
       $state.go('loggedIn');
+
     }
     self.user = TokenService.decodeToken();
     CurrentUser.saveUser(self.user);

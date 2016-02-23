@@ -25,7 +25,11 @@ function MainRouter($stateProvider, $urlRouterProvider){
   .state('loggedIn', {
     url: "/loggedIn",
     templateUrl: "/mainApp/states/loggedIn.html",
-  }),
+  })
+  .state('tournaments', {
+    url: "/tournaments",
+    templateUrl: "/mainApp/states/tournaments.html",
+  })
 
  
   $urlRouterProvider.otherwise('/');
