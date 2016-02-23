@@ -34,7 +34,14 @@ router.route('/users')
 
 
 //ROUTES FOR TOURNAMENT 
+router.route('/projects')
+  .get(tournamentController.tournamentsIndex)
+  .post(tournamentController.tournamentsCreate)
 
+router.route('/projects/:id') 
+  .get(tournamentController.tournamentsShow)
+  .patch(tournamentController.tournamentsUpdate)
+  .delete(tournamentController.tournamentsDelete)
 // router.route('/tournaments/newimage/:id')
 // 	.post(tournamentController.addImageToTourn)
 

@@ -4,9 +4,11 @@ angular
 
 TournamentController.$inject = ['$scope', '$http']
 
-// function TournamentController($scope, $http){
+function TournamentController($scope, $http){
 
-// 	var self = this;
+	var self = this;
+	self.tournaments 		= [];
+	self.tournament 		= {};
 // 	self.name = "name"
 
 
