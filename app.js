@@ -15,7 +15,8 @@ var bodyParser    = require('body-parser');
 var morgan        = require('morgan');
 var mongoose      = require('mongoose');
 var User          = require('./models/user');
-var secret        = require('./config/config.js').secret;
+var secret        = require('./config/config').secret;
+
 
 mongoose.connect('mongodb://localhost/golfapp');
 

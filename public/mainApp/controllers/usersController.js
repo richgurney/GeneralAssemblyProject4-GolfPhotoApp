@@ -1,45 +1,70 @@
-var User   = require('../../../models/user');
+angular
+  .module('golf-app')
+  .controller('UsersController', UsersController);
 
-function usersIndex(req, res) {
-  User.find(function(err, users){
-    if (err) return res.status(404).json({message: 'Something went wrong.'});
-    res.status(200).json(users);
-  });
-}
+// Here we inject the currentUser service to access the current user
+UsersController.$inject = ['User', 'TokenService', '$state', 'CurrentUser'];
+function UsersController(User, TokenService, $state, CurrentUser){
 
-function usersShow(req, res){
-  User.findById(req.params.id, function(err, user){
-    if (err) return res.status(404).json({message: 'Something went wrong.'});
-    res.status(200).json({ user: user });
-  });
-}
+  var self = this;
 
-function usersUpdate(req, res){
-  User.findById(req.params.id,  function(err, user) {
-    if (err) return res.status(500).json({message: "Something went wrong!"});
-    if (!user) return res.status(404).json({message: 'No user found.'});
+  self.all           = [];
+  self.user          = {};
+  self.error         = null;
+  self.getUsers      = getUsers;
+  self.register      = register;
+  self.login         = login;
+  self.logout        = logout;
+  self.checkLoggedIn = checkLoggedIn;
 
-    if (req.body.email) user.local.email = req.body.name;
-    if (req.body.password) user.local.password = req.body.password;
-
-    user.save(function(err) {
-     if (err) return res.status(500).json({message: "Something went wrong!"});
-
-      res.status(201).json({message: 'User successfully updated.', user: user});
+  function getUsers() {
+    User.query(function(data){
+      console.log(data)
+      self.all = data;
     });
-  });
-}
+  }
 
-function usersDelete(req, res){
-  User.findByIdAndRemove({_id: req.params.id}, function(err){
-   if (err) return res.status(404).json({message: 'Something went wrong.'});
-   res.status(200).json({message: 'User has been successfully deleted'});
-  });
-}
+  function handleLogin(res) {
+    var token = res.token ? res.token : null;
+    if (token) {
+      self.getUsers();
+      $state.go('loggedIn');
+    }
+    self.user = TokenService.decodeToken();
+    CurrentUser.saveUser(self.user);
+  }
 
-module.exports = {
-  usersIndex:  usersIndex,
-  usersShow:   usersShow,
-  usersUpdate: usersUpdate,
-  usersDelete: usersDelete
-};
+  function handleError(e) {
+    self.error = "Something went wrong.";
+  }
+
+  function register() {
+    self.error = null;
+    User.register(self.user, handleLogin, handleError);
+  }
+
+  function login() {
+    self.error = null;
+    User.login(self.user, handleLogin, handleError);
+  }
+
+  function logout() {
+    TokenService.removeToken();
+    self.all  = [];
+    self.user = {};
+    CurrentUser.clearUser();
+    $state.go('login');
+  }
+
+  function checkLoggedIn() {
+    var loggedIn = !!TokenService.getToken();
+    return loggedIn;
+  }
+
+  if (!!CurrentUser.getUser()) {
+    self.user = CurrentUser.getUser();
+    self.getUsers();
+  }
+
+  return self;
+}

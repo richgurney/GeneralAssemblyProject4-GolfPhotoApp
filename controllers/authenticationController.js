@@ -1,6 +1,6 @@
 var passport = require("passport");
-var User     = require('../../../models/user');
-var secret   = require('../../../config/config.js')
+var User     = require('../models/user');
+var secret   = require('../config/config.js').secret
 var jwt      = require('jsonwebtoken');
 
 function register(req, res, next) {

@@ -1,6 +1,12 @@
-angular.module('golf-app', ['ui.router','ngResource'])
+angular
+.module('golf-app', ['ngResource', 'angular-jwt', 'ui.router'])
+  .constant('API', 'http://localhost:3000/api')
   .config(MainRouter)
+  .config(function($httpProvider){
+    $httpProvider.interceptors.push('authInterceptor');
+  });
 
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function MainRouter($stateProvider, $urlRouterProvider){
   $stateProvider
@@ -11,8 +17,16 @@ function MainRouter($stateProvider, $urlRouterProvider){
   .state('register', {
     url: "/register",
     templateUrl: "/mainApp/states/register.html",
+  }) 
+  .state('login', {
+    url: "/login",
+    templateUrl: "/mainApp/states/login.html",
+  })
+  .state('loggedIn', {
+    url: "/loggedIn",
+    templateUrl: "/mainApp/states/loggedIn.html",
   }),
 
-
+ 
   $urlRouterProvider.otherwise('/');
 }
