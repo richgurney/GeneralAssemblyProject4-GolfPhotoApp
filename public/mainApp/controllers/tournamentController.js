@@ -11,23 +11,48 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
   self.tournament  = {};
   self.newTournament = {};
 
-
   self.getTournaments = function(){
     Tournament.query(function(data){
       self.all = data;
-      console.log(self.all)
+      // console.log(self.all)
     });
   };
 
   self.addTournament = function(){
-    var tournament = { tournament: self.newTournament };
-    Tournament.save(self.newTournament, function(data){
+    console.log(CurrentUser.currentUser()._id)
+    if (self.newTournament._id) {
+      Tournament.update({tournament: self.newTournament, id: self.newTournament._id}, function(){
+        self.newTournament = {};
+      });
+    } else {
+      Tournament.save({tournament: self.newTournament, userId : CurrentUser.currentUser()._id}, function(data){
+        self.all.push(data);
+        self.newTournament = {};
+      });
+    }
+};
+  //   var tournament = { tournament: self.newTournament };
+  //   Tournament.save(self.newTournament, function(data){
+  //     self.all.push(data);
+  //     self.newTournament = {};
+  //     // $state.go('login');
+  //   });
+  // };
 
-      self.all.push(data);
-      self.newTournament = {};
-      // $state.go('login');
-    });
-  };
+  self.deleteTournament = function(tournament){
+    // console.log('its getting to delete')
+    Tournament.delete({id: tournament._id});
+    var index = self.all.indexOf(tournament);
+    self.all.splice(index, 1)
+  }
+
+  // Fill the form to edit a Character
+  this.editTournament = function(tournament){
+    console.log("its getting to edit")
+  
+    self.newTournament = tournament;
+    console.log(self.newTournament)
+  }
 
   self.getTournaments();
   // self.getUsers();

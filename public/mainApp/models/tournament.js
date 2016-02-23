@@ -10,6 +10,7 @@ function Tournament($resource, API){
     { 'get':       { method: 'GET' },
       'save':      { method: 'POST' },
       'query':     { method: 'GET', isArray: true},
+      'update':    { method: 'PATCH' },
       'remove':    { method: 'DELETE' },
       'delete':    { method: 'DELETE' },
     }

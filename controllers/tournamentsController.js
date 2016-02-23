@@ -29,11 +29,15 @@ function tournamentsIndex(req, res , next){
 // }
 
 function tournamentsCreate(request, response) {
-  console.log(request)
-  var tournament = new Tournament(request.body);
+  var tournament = new Tournament(request.body.tournament);
 
-  tournament.save(function(error) {
+  tournament.save(function(error, tourn) {
     if(error) response.status(500).send(error);
+    User.findOne({_id: request.body.userId}, function(err, user){
+      if(err) console.log(err)
+      user.tournaments.push(tourn._id)
+      user.save()
+    })
 
     response.status(201).send(tournament);
   });
