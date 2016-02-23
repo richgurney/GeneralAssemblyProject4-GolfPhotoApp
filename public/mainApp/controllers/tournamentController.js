@@ -1,15 +1,40 @@
 angular
   .module('golf-app')
-  .controller('tournamentController', TournamentController);
+  .controller('TournamentsController', TournamentsController);
 
-TournamentController.$inject = ['$scope', '$http']
+TournamentsController.$inject = ["Tournament", "User", "$state", "CurrentUser"];
+function TournamentsController(Tournament, User, $state, CurrentUser){
+  var self = this;
 
-function TournamentController($scope, $http){
+  self.all      = [];
+  self.users    = [];
+  self.tournament  = {};
+  self.newTournament = {};
 
-	var self = this;
-	self.tournaments 		= [];
-	self.tournament 		= {};
-// 	self.name = "name"
+
+  self.getTournaments = function(){
+    Tournament.query(function(data){
+      self.all = data;
+      console.log(self.all)
+    });
+  };
+
+  self.addTournament = function(){
+    var tournament = { tournament: self.newTournament };
+    Tournament.save(self.newTournament, function(data){
+
+      self.all.push(data);
+      self.newTournament = {};
+      // $state.go('login');
+    });
+  };
+
+  self.getTournaments();
+  // self.getUsers();
+}
+
+
+
 
 
 

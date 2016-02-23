@@ -1,12 +1,12 @@
 angular
   .module('golf-app')
-  .factory('Project', Project)
+  .factory('Tournament', Tournament)
 
-Project.$inject = ['$resource', 'API']
-function Project($resource, API){
+Tournament.$inject = ['$resource', 'API']
+function Tournament($resource, API){
 
   return $resource(
-    API+'/projects/:id', {id: '@id'},
+    API+'/tournaments/:id', {id: '@id'},
     { 'get':       { method: 'GET' },
       'save':      { method: 'POST' },
       'query':     { method: 'GET', isArray: true},

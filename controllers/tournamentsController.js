@@ -1,26 +1,41 @@
 //crud actions
-var Tournamnet = require("../models/tournament")
+var Tournament = require("../models/tournament")
 var User = require("../models/user");
 
-function tournamentsIndex(req, res){
+function tournamentsIndex(req, res , next){
   Tournament.find({}, function(err, tournaments) {
-    if (err) return res.status(404).send(err);
+    if (err) {
+      console.log(err);
+      return res.status(404).send(err);
+    }
     res.status(200).send(tournaments);
   });
 }
 
-function tournamentsCreate(req, res){
-  var tournament = new Project(req.body.tournament);
-  tournament.save(function(err, newTournament){
-    if (err) return res.status(500).send(err);
-    var name = req.body.tournament.user;
-    User.findOne({ name: name }, function(err, user){
-      user.tournamnets.push(newTournament);
-      user.save(function(err, user) {
-        // We should really check for errors here
-        res.status(201).send(newTournament);
-      });
-    });
+// function tournamentsCreate(req, res){
+//   console.log(req)
+//   var tournament = new Tournament(req.body.tournament);
+//   tournament.save(function(err, newTournament){
+//     if (err) return res.status(500).send(err);
+//     var name = req.body.tournament.user;
+//     User.findOne({ name: name }, function(err, user){
+//       user.tournamnets.push(newTournament);
+//       user.save(function(err, user) {
+//         // We should really check for errors here
+//         res.status(201).send(newTournament);
+//       });
+//     });
+//   });
+// }
+
+function tournamentsCreate(request, response) {
+  console.log(request)
+  var tournament = new Tournament(request.body);
+
+  tournament.save(function(error) {
+    if(error) response.status(500).send(error);
+
+    response.status(201).send(tournament);
   });
 }
 
@@ -71,6 +86,6 @@ module.exports = {
   tournamentsCreate: tournamentsCreate,
   tournamentsShow:   tournamentsShow,
   tournamentsUpdate: tournamentsUpdate,
-  tournamentsDelete: tournamentsDelete,
-  addImageToTourn: addImageToTourn
+  tournamentsDelete: tournamentsDelete
+  // addImageToTourn: addImageToTourn
 };

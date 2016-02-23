@@ -2,5 +2,29 @@
 <br>
 <br>
 <br>
-
 <h1>This is the tournaments page</h1>
+<div ng-controller="TournamentsController as tournament">
+  <form ng-submit="tournament.addTournament()" id="newTournament">
+    <div>
+      <input type="text" id="newTournament-name" ng-model="tournament.newTournament.name" placeholder="Tournament Name">
+    </div>
+    <div>
+      <input type="text" id="newTournament-course" ng-model="tournament.newTournament.course" placeholder="Course">
+    </div>
+    <div>
+      <input type="text" id="newTournament-des" ng-model="tournament.newTournament.description" placeholder="Tournament Description">
+    </div>
+    <div>
+      <input type="submit" value="Add Tournament">
+    </div>
+  </form>
+
+
+  <li ng-repeat="event in tournament.all" data-id="{{tournament._id}}">
+    <strong>{{event.name}}</strong>
+    <em>{{event.course}}</em> <span>{{event.description}}</span>
+    <button class='delete' ng-click="event.deleteTournament(event)">Delete</button>
+  </li>
+
+
+</div>
