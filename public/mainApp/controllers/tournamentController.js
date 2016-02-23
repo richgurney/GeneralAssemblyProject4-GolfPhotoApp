@@ -6,22 +6,28 @@ TournamentsController.$inject = ["Tournament", "User", "$state", "CurrentUser"];
 function TournamentsController(Tournament, User, $state, CurrentUser){
   var self = this;
 
-  self.all      = [];
-  self.users    = [];
-  self.tournament  = {};
-  self.newTournament = {};
+  self.all                    = [];
+  self.users                  = [];
+  self.tournament             = {};
+  self.newTournament          = {};
+  self.selected               = [];
+  self.id                     = $state.params.id
+
+  self.getOne = function(){
+    var one = Tournament.get({id: self.id}, function(){
+      self.selected = one;
+    })
+  }
 
   self.getTournaments = function(){
     Tournament.query(function(data){
       self.all = data;
-      // console.log(self.all)
     });
   };
 
   self.addTournament = function(){
-    console.log(CurrentUser.currentUser()._id)
-    if (self.newTournament._id) {
-      Tournament.update({tournament: self.newTournament, id: self.newTournament._id}, function(){
+      if (self.newTournament._id) {
+        Tournament.update({tournament: self.newTournament, id: self.newTournament._id}, function(){
         self.newTournament = {};
       });
     } else {
@@ -30,17 +36,9 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
         self.newTournament = {};
       });
     }
-};
-  //   var tournament = { tournament: self.newTournament };
-  //   Tournament.save(self.newTournament, function(data){
-  //     self.all.push(data);
-  //     self.newTournament = {};
-  //     // $state.go('login');
-  //   });
-  // };
+  };
 
   self.deleteTournament = function(tournament){
-    // console.log('its getting to delete')
     Tournament.delete({id: tournament._id});
     var index = self.all.indexOf(tournament);
     self.all.splice(index, 1)
@@ -48,29 +46,17 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
 
   // Fill the form to edit a Character
   this.editTournament = function(tournament){
-    console.log("its getting to edit")
-  
     self.newTournament = tournament;
-    console.log(self.newTournament)
   }
 
-  self.getTournaments();
-  // self.getUsers();
+  if (self.id) {
+    self.getOne()
+  }
+  else {
+    self.getTournaments()
+  }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // 	self.addImageToTourn = function(){

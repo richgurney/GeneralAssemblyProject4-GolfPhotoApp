@@ -30,6 +30,10 @@ function MainRouter($stateProvider, $urlRouterProvider){
     url: "/tournaments",
     templateUrl: "/mainApp/states/tournaments.html",
   })
+  .state('showTournament', {
+    url: "/showTournament/:id",
+    templateUrl: "/mainApp/states/showTournament.html"
+  })
 
  
   $urlRouterProvider.otherwise('/');

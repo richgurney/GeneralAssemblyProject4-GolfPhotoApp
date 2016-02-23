@@ -12,22 +12,6 @@ function tournamentsIndex(req, res , next){
   });
 }
 
-// function tournamentsCreate(req, res){
-//   console.log(req)
-//   var tournament = new Tournament(req.body.tournament);
-//   tournament.save(function(err, newTournament){
-//     if (err) return res.status(500).send(err);
-//     var name = req.body.tournament.user;
-//     User.findOne({ name: name }, function(err, user){
-//       user.tournamnets.push(newTournament);
-//       user.save(function(err, user) {
-//         // We should really check for errors here
-//         res.status(201).send(newTournament);
-//       });
-//     });
-//   });
-// }
-
 function tournamentsCreate(request, response) {
   var tournament = new Tournament(request.body.tournament);
 
@@ -45,7 +29,6 @@ function tournamentsCreate(request, response) {
 
 function tournamentsShow(req, res){
   var id = req.params.id;
-
   Tournament.findById({ _id: id }, function(err, tournament) {
     if (err) return res.status(500).send(err);
     if (!tournament) return res.status(404).send(err);
