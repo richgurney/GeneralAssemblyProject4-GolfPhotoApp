@@ -8,11 +8,23 @@ function usersIndex(req, res) {
 }
 
 function usersShow(req, res){
-  User.findById(req.params.id, function(err, user){
-    if (err) return res.status(404).json({message: 'Something went wrong.'});
-    res.status(200).json({ user: user });
-  });
+  var id = req.params.id;
+  User.findById({_id: id})
+    .populate("tournaments")
+    .exec(function(err, users){
+      if (err) return res.status(404).json({message: 'Something went wrong.'});
+        res.status(200).send(users);
+  })
 }
+
+// function usersShow(req, res){
+
+
+//   User.findById(req.params.id, function(err, user){
+//     if (err) return res.status(404).json({message: 'Something went wrong.'});
+//     res.status(200).json({ user: user });
+//   });
+// }
 
 function usersUpdate(req, res){
   User.findById(req.params.id,  function(err, user) {

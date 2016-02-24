@@ -11,8 +11,16 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
   self.tournament             = {};
   self.newTournament          = {};
   self.selected               = [];
-  self.id                     = $state.params.id
+  self.id                     = $state.params.id;
+  self.usersTournaments       = [];
 
+  self.getUsersTournaments = function(){
+    var userTourn = User.get({id: CurrentUser.currentUser()._id}, function(){
+      self.usersTournaments = userTourn.tournaments;
+      // console.log(self.usersTournaments)
+    })
+  }
+  
   self.getOne = function(){
     var one = Tournament.get({id: self.id}, function(){
       self.selected = one;
@@ -21,7 +29,7 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
 
   self.getTournaments = function(){
     Tournament.query(function(data){
-      self.all = data;
+      self.usersTournaments = data;
     });
   };
 
@@ -32,7 +40,7 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
       });
     } else {
       Tournament.save({tournament: self.newTournament, userId : CurrentUser.currentUser()._id}, function(data){
-        self.all.push(data);
+        self.usersTournaments.push(data);
         self.newTournament = {};
       });
     }
@@ -41,7 +49,7 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
   self.deleteTournament = function(tournament){
     Tournament.delete({id: tournament._id});
     var index = self.all.indexOf(tournament);
-    self.all.splice(index, 1)
+    self.usersTournaments.splice(index, 1)
   }
 
   // Fill the form to edit a Character
@@ -53,7 +61,8 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
     self.getOne()
   }
   else {
-    self.getTournaments()
+    self.getUsersTournaments()
+    // self.getTournaments()
   }
 
 }

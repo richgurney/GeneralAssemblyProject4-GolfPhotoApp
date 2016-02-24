@@ -11,6 +11,9 @@ router.post('/register', authenticationsController.register);
 router.route('/users')
 	.get(usersController.usersIndex);
 
+router.route('/users/:id')
+	.get(usersController.usersShow)
+
 router.route('/tournaments')
   .get(tournamentController.tournamentsIndex)
   .post(tournamentController.tournamentsCreate);
@@ -19,6 +22,7 @@ router.route('/tournaments/:id')
   .get(tournamentController.tournamentsShow)
   .patch(tournamentController.tournamentsUpdate)
   .delete(tournamentController.tournamentsDelete);
+  
 // router.route('/tournaments/newimage/:id')
 // 	.post(tournamentController.addImageToTourn)
 

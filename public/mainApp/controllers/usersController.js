@@ -20,8 +20,10 @@ function UsersController(User, TokenService, $state, CurrentUser){
   
 
   function getCurrentUser(){
+
     if(CurrentUser.currentUser()){
-      self.currentUser   = CurrentUser.currentUser().local;
+      self.currentUser = CurrentUser.currentUser().local;
+      console.log(self.currentUser)
     }
   }
   

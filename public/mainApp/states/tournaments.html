@@ -19,7 +19,7 @@
     </div>
   </form>
 
-  <li ng-repeat="event in tournament.all" data-id="{{tournament._id}}">
+  <li ng-repeat="event in tournament.usersTournaments" data-id="{{tournament._id}}">
     <strong>{{event.name}}</strong>
     <em>{{event.course}}</em> <span>{{event.description}}</span>
     <a href="#" ng-click="tournament.editTournament(event)">Edit</a>
