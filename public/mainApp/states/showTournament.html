@@ -9,4 +9,11 @@
 	<h2>Course: {{show.selected.course}}</h2>
 	<h2>Description: {{show.selected.description}}</h2>
 
+	<button ng-click="show.addImageToTourn()">Add Photos</button>
+
+	<li ng-repeat="image in show.selectedImages" data-id="{{tournament._id}}">
+	  <strong>{{image.name}}</strong>
+	  <em>{{image.url}}</em> 
+	  <button class='delete' ng-click="show.deleteImage(image)">Delete</button>
+	</li>
 </div>

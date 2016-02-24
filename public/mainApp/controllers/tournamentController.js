@@ -2,8 +2,8 @@ angular
   .module('golf-app')
   .controller('TournamentsController', TournamentsController);
 
-TournamentsController.$inject = ["Tournament", "User", "$state", "CurrentUser"];
-function TournamentsController(Tournament, User, $state, CurrentUser){
+TournamentsController.$inject = ["Tournament", "User", "$state", "CurrentUser", "$http"];
+function TournamentsController(Tournament, User, $state, CurrentUser, $http){
   var self = this;
 
   self.all                    = [];
@@ -11,28 +11,34 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
   self.tournament             = {};
   self.newTournament          = {};
   self.selected               = [];
+  self.selectedImages         = [];
   self.id                     = $state.params.id;
   self.usersTournaments       = [];
 
+  // get all the current users tournaments
   self.getUsersTournaments = function(){
     var userTourn = User.get({id: CurrentUser.currentUser()._id}, function(){
       self.usersTournaments = userTourn.tournaments;
-      // console.log(self.usersTournaments)
+      
     })
   }
   
+  // gets the tournament that you clicked
   self.getOne = function(){
     var one = Tournament.get({id: self.id}, function(){
       self.selected = one;
+      self.selectedImages = self.selected.images
     })
   }
 
+  // this gets all the tournaments in the database
   self.getTournaments = function(){
     Tournament.query(function(data){
       self.usersTournaments = data;
     });
   };
 
+  // add and update function for tournament
   self.addTournament = function(){
       if (self.newTournament._id) {
         Tournament.update({tournament: self.newTournament, id: self.newTournament._id}, function(){
@@ -46,6 +52,7 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
     }
   };
 
+  // delete the clicked tournament
   self.deleteTournament = function(tournament){
     Tournament.delete({id: tournament._id});
     var index = self.all.indexOf(tournament);
@@ -57,6 +64,9 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
     self.newTournament = tournament;
   }
 
+  // choosing between the to function that 
+  // gets either the tournaments or just one 
+  // if self.id is present
   if (self.id) {
     self.getOne()
   }
@@ -65,20 +75,42 @@ function TournamentsController(Tournament, User, $state, CurrentUser){
     // self.getTournaments()
   }
 
-}
+//--------images for tournament------// 
 
+// add an image to tournament
+  self.addImageToTourn = function(){
+    var newImage = {
+      name: 'delete', // add the right info
+      url: 'delete'
+    };
 
-// 	self.addImageToTourn = function(){
-// 		var newImage = {
-// 			name: 'name' // add the right info
-// 			url: 'url'
-// 		}
+    Tournament.addImage({id: self.id, image: newImage}, function(res){
+      image = res.image;
+      self.selectedImages.push(image);
+      console.log(self.selectedImages);
+    });
+  };
 
-// 		$http
-// 			.post('localhost:3000/api/tournament/addimage/' + tournID, {image: newImage}, function(err, res){
-// 				console.log(res)
-// 			})
-// 	}
+  // delete the clicked tournament
+  // self.deleteImage = function(image){
+  //   Tournament.delete({id: tournament._id});
+  //   var index = self.all.indexOf(tournament);
+  //   self.usersTournaments.splice(index, 1)
+  // }
+
+  self.deleteImage = function(image){
+    Tournament.deleteImage({id: self.id, image: image}, function(res){
+      var index = self.selectedImages.indexOf(image);
+      self.selectedImages.splice(index, 1)
+    });
+  
+  };
+
   
 
-// }
+
+};
+
+
+	
+  

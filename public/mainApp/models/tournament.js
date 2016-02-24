@@ -13,6 +13,14 @@ function Tournament($resource, API){
       'update':    { method: 'PATCH' },
       'remove':    { method: 'DELETE' },
       'delete':    { method: 'DELETE' },
+      'addImage': {
+        url: API +'/addimage/:id',
+        method: "POST"
+      },
+      'deleteImage': {
+        url: API +'/deleteimage/:id',
+        method: "PUT"
+      },
     }
   );
 }

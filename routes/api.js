@@ -9,21 +9,30 @@ router.post('/login', authenticationsController.login);
 router.post('/register', authenticationsController.register);
 
 router.route('/users')
-	.get(usersController.usersIndex);
+	.get(usersController.usersIndex)
 
 router.route('/users/:id')
 	.get(usersController.usersShow)
 
 router.route('/tournaments')
   .get(tournamentController.tournamentsIndex)
-  .post(tournamentController.tournamentsCreate);
+  .post(tournamentController.tournamentsCreate)
+
+router.route('/addimage/:id')
+	.post(tournamentController.addImage)
+
+router.route('/deleteImage/:id')
+	.put(tournamentController.deleteImage)
 
 router.route('/tournaments/:id') 
   .get(tournamentController.tournamentsShow)
   .patch(tournamentController.tournamentsUpdate)
-  .delete(tournamentController.tournamentsDelete);
+  .delete(tournamentController.tournamentsDelete)
+
+
+ function test(){
+ 	console.log('testing')
+ }
   
-// router.route('/tournaments/newimage/:id')
-// 	.post(tournamentController.addImageToTourn)
 
 module.exports = router

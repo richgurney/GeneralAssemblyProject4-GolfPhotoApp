@@ -23,7 +23,7 @@ function UsersController(User, TokenService, $state, CurrentUser){
 
     if(CurrentUser.currentUser()){
       self.currentUser = CurrentUser.currentUser().local;
-      console.log(self.currentUser)
+      // console.log(self.currentUser)
     }
   }
   

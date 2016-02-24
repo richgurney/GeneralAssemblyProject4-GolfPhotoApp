@@ -2,6 +2,56 @@
 var Tournament = require("../models/tournament")
 var User = require("../models/user");
 
+
+
+// function addImageToTourn(req, res){
+//   console("hitting the back end")
+//   res.send('hello')
+//   // var id = req.params.id
+//   // var image = req.body.image
+
+//   // Tournament.findOne({ _id: id}, function(err, tourn){
+//   //  if(err) res.status(400).send({message: 'oops, something went wrong.'})
+//   //  tourn.images.push(image.image)
+//   //  tourn.save()
+//   //  res.status(200).send()
+//   // })
+// }
+
+
+function addImage(req, res){
+    var id = req.params.id
+    var image = req.body.image
+    Tournament.findOne({ _id: id}, function(err, tourn){
+     if(err) res.status(400).send({message: 'oops, something went wrong.'})
+     tourn.images.push(image)
+     tourn.save()
+     res.status(200).send()
+    })
+}
+
+function deleteImage(req, res){
+  console.log("this is the backend")
+
+  var id = req.body.id
+  var image = req.body.image
+
+  Tournament.findOne({_id: id}, function(err, tourn){
+    if(err) res.status(400).send({message: 'oops, something went wrong.'})
+    var imageArray = tourn.images;
+    var index = imageArray.indexOf(image);
+    tourn.images.splice(index, 1);
+    tourn.save();
+    res.status(200).send()
+
+    console.log(tourn.images)
+
+  })
+  
+}
+
+
+
 function tournamentsIndex(req, res , next){
   Tournament.find({}, function(err, tournaments) {
     if (err) {
@@ -55,24 +105,14 @@ function tournamentsDelete(req, res){
   });
 }
 
-// function addImageToTourn(req, res){
 
-// 	var id = req.params.id
-// 	var image = req.body.image
-
-// 	Tournamnet.findOne({ _id: id}, function(err, tourn){
-// 		if(err) res.status(400).send(message: 'oops, something went wrong.')
-// 		tourn.images.push(image.image)
-// 		tourn.save()
-// 		res.status(200).send()
-// 	})
-// }
 
 module.exports = {
+  addImage: addImage,
+  deleteImage: deleteImage,
   tournamentsIndex:  tournamentsIndex,
   tournamentsCreate: tournamentsCreate,
   tournamentsShow:   tournamentsShow,
   tournamentsUpdate: tournamentsUpdate,
   tournamentsDelete: tournamentsDelete
-  // addImageToTourn: addImageToTourn
 };
