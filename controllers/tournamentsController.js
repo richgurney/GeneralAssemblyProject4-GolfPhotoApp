@@ -106,7 +106,6 @@ function tournamentsDelete(req, res){
 }
 
 
-
 module.exports = {
   addImage: addImage,
   deleteImage: deleteImage,

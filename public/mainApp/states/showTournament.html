@@ -4,16 +4,38 @@
 <br>
 <br>
 <div id="showContainer" ng-controller="TournamentsController as show">
-
 	<h1>Tournament: {{show.selected.name }}</h1>
 	<h2>Course: {{show.selected.course}}</h2>
 	<h2>Description: {{show.selected.description}}</h2>
-
 	<button ng-click="show.addImageToTourn()">Add Photos</button>
-
 	<li ng-repeat="image in show.selectedImages" data-id="{{tournament._id}}">
 	  <strong>{{image.name}}</strong>
 	  <em>{{image.url}}</em> 
 	  <button class='delete' ng-click="show.deleteImage(image)">Delete</button>
 	</li>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div ng-controller="UploadController as up">
+  Upload single file on form submit
+ <form name="up.form" ng-submit="up.uploadSingle()">
+    <input type="file"ngf-select ng-model="up.file" name="file">Select File</input>
+    <button type="submit">Submit</button>
+  </form>
+  <!-- Upload multiple files on form submit
+  <form name="main.multiForm" ng-submit="main.uploadMulti()">
+    <input type="file" ngf-select ng-model="main.files" name="files" ngf-multiple="true">Select Files</div>
+    <button type="submit">Submit</button>
+  </form> -->
+
+  <h1>{{up.title}}</h1>
+  <li ng-repeat="image in up.uploadedImages">
+    <img src="https://s3-eu-west-1.amazonaws.com/gurneytest/{{image.filename}}">
+    <h1>{{image.filename}}</h1>
+  </li>
+
+<!--  <img src="https://s3-eu-west-1.amazonaws.com/gurneytest/uploads/57221500-db31-11e5-a4ad-ab837f683f19.png" -->
 </div>

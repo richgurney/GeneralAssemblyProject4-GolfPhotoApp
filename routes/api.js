@@ -3,36 +3,31 @@ var router = express.Router();
 
 var usersController = require('../controllers/usersController');
 var authenticationsController = require('../controllers/authenticationController');
-var tournamentController = require('../controllers/tournamentsController')
+var tournamentController = require('../controllers/tournamentsController');
+var uploadController = require('../controllers/uploadController');
 
 router.post('/login', authenticationsController.login);
 router.post('/register', authenticationsController.register);
 
 router.route('/users')
-	.get(usersController.usersIndex)
+	.get(usersController.usersIndex);
 
 router.route('/users/:id')
-	.get(usersController.usersShow)
+	.get(usersController.usersShow);
 
 router.route('/tournaments')
   .get(tournamentController.tournamentsIndex)
-  .post(tournamentController.tournamentsCreate)
+  .post(tournamentController.tournamentsCreate);
 
 router.route('/addimage/:id')
-	.post(tournamentController.addImage)
+	.post(tournamentController.addImage);
 
 router.route('/deleteImage/:id')
-	.put(tournamentController.deleteImage)
+	.put(tournamentController.deleteImage);
 
 router.route('/tournaments/:id') 
   .get(tournamentController.tournamentsShow)
   .patch(tournamentController.tournamentsUpdate)
-  .delete(tournamentController.tournamentsDelete)
-
-
- function test(){
- 	console.log('testing')
- }
+  .delete(tournamentController.tournamentsDelete);
   
-
 module.exports = router
