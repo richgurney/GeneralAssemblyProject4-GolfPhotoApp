@@ -1,3 +1,7 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
 #dropFormAddTournament input {
 	width: 100%;
 }
@@ -78,4 +82,36 @@
 
 .deleteNav:hover {
 	color: rgba(9, 66, 9, 0.49);
+}
+
+#jumboStyle {
+	text-align: center;
+}
+
+#imageContainer {
+
+    background-color: rgb(238, 238, 238);
+    border: solid 1px rgba(9, 9, 10, 0.11);
+    height: 400px;
+    overflow: none
+	
+}
+
+.image {
+	text-align: center;
+	height: 300px;
+}
+
+.delete {
+	position: absolute;
+	bottom: 5%;
+	padding-top: 0px;
+	padding-left: 6px;
+	background-color: rgba(255, 0, 0, 0);
+	border: none;
+	color: rgba(255, 0, 0, 0.52);
+}
+
+.imageSize {
+	height: 100%;
 }
