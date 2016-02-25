@@ -22,9 +22,9 @@ function MainRouter($stateProvider, $urlRouterProvider){
     url: "/login",
     templateUrl: "/mainApp/states/login.html",
   })
-  .state('loggedIn', {
-    url: "/loggedIn",
-    templateUrl: "/mainApp/states/loggedIn.html",
+  .state('profile', {
+    url: "/profile",
+    templateUrl: "/mainApp/states/profile.html",
   })
   .state('tournaments', {
     url: "/tournaments",

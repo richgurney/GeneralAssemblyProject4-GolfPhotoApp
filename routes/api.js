@@ -13,7 +13,9 @@ router.route('/users')
 	.get(usersController.usersIndex);
 
 router.route('/users/:id')
-	.get(usersController.usersShow);
+	.get(usersController.usersShow)
+	.put(usersController.usersUpdate)
+	.delete(usersController.usersDelete);
 
 router.route('/tournaments')
   .get(tournamentController.tournamentsIndex)

@@ -17,30 +17,52 @@ function UsersController(User, TokenService, $state, CurrentUser){
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
   self.getCurrentUser= getCurrentUser;
-  
+  self.deleteUser    = deleteUser;
+  self.editUser      = editUser;
 
+  
   function getCurrentUser(){
 
     if(CurrentUser.currentUser()){
       self.currentUser = CurrentUser.currentUser().local;
-      // console.log(self.currentUser)
+      console.log(self.currentUser)
     }
   }
-  
+
   function getUsers() {
     User.query(function(data){
-      
+      console.log(data)
       self.all = data;
       // console.log(self.all[0].local.email)
       // console.log(self.currentUser)
     });
   }
 
+  // ----------------- update and delete user
+  // delete the clicked tournament
+   function deleteUser(user){
+     User.delete({id: CurrentUser.currentUser()._id});
+     
+     TokenService.removeToken();
+     self.all  = [];
+     self.user = {};
+     CurrentUser.clearUser();
+     $state.go('login');
+   }
+
+   // Fill the form to edit a Character
+   function editUser(user){
+     User.edit({id: CurrentUser.currentUser()._id})
+     self.newTournament = user;
+   }
+
+  //-----------------------------------------------
+
   function handleLogin(res) {
     var token = res.token ? res.token : null;
     if (token) {
       self.getUsers();
-      $state.go('loggedIn');
+      $state.go('tournaments');
 
     }
     self.user = TokenService.decodeToken();
