@@ -10,14 +10,13 @@ function CurrentUser(TokenService){
   self.user = null;
 
   self.saveUser = function(user){
-    self.user = user._doc.local;
+    self.user = user;  
   };
-
 
   //function to return the current user details. 
   self.currentUser = function(){
     if(self.getUser()){
-    return self.getUser()._doc
+      return self.getUser();
     }
   }
 

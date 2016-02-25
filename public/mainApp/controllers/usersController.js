@@ -20,13 +20,19 @@ function UsersController(User, TokenService, $state, CurrentUser){
   self.deleteUser    = deleteUser;
   self.editUser      = editUser;
 
-  
+  self.currentUser = {}
+  console.log("hitting controller")
+
   function getCurrentUser(){
 
-    if(CurrentUser.currentUser()){
-      self.currentUser = CurrentUser.currentUser().local;
-      console.log(self.currentUser)
-    }
+    // if(CurrentUser.currentUser()){
+    //   self.currentUser = CurrentUser.currentUser();
+    //   // console.log(self.currentUser)
+    // }
+    console.log("hitting getCurrentUser function")
+    if (self.currentUser == CurrentUser.currentUser()) {
+      self.currentUser = CurrentUser.currentUser()
+    };
   }
 
   function getUsers() {
@@ -45,15 +51,23 @@ function UsersController(User, TokenService, $state, CurrentUser){
      
      TokenService.removeToken();
      self.all  = [];
-     self.user = {};
+     self.currentUser = {};
      CurrentUser.clearUser();
      $state.go('login');
    }
 
    // Fill the form to edit a Character
-   function editUser(user){
-     User.edit({id: CurrentUser.currentUser()._id})
-     self.newTournament = user;
+   function editUser(){
+    console.log(self.currentUser)
+      // console.log(CurrentUser.currentUser()._id)
+     User.edit({user: self.currentUser, id: CurrentUser.currentUser()._id}, function(res) {
+      console.log(res)
+      CurrentUser.saveUser(res.user);
+      // getCurrentUser();
+      self.currentUser = CurrentUser.user
+      console.log(self.currentUser);
+     })
+     // self.newTournament = user;
    }
 
   //-----------------------------------------------
@@ -63,10 +77,15 @@ function UsersController(User, TokenService, $state, CurrentUser){
     if (token) {
       self.getUsers();
       $state.go('tournaments');
-
     }
-    self.user = TokenService.decodeToken();
+    // getCurrentUser();
+    // self.user = CurrentUser.currentUser();
+    self.currentUser = CurrentUser.currentUser();
+    // self.user = TokenService.decodeToken();
     CurrentUser.saveUser(self.user);
+    // self.user = CurrentUser.user;
+    self.currentUser = CurrentUser.currentUser();
+
   }
 
   function handleError(e) {
@@ -86,7 +105,7 @@ function UsersController(User, TokenService, $state, CurrentUser){
   function logout() {
     TokenService.removeToken();
     self.all  = [];
-    self.user = {};
+    // self.user = {};
     CurrentUser.clearUser();
     $state.go('login');
   }
@@ -97,7 +116,7 @@ function UsersController(User, TokenService, $state, CurrentUser){
   }
 
   if (!!CurrentUser.getUser()) {
-    self.user = CurrentUser.getUser();
+    // self.user = CurrentUser.getUser();
     self.getUsers();
   }
 

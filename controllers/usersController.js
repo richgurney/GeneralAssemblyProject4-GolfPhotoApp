@@ -27,14 +27,16 @@ function usersShow(req, res){
 // }
 
 function usersUpdate(req, res){
+  console.log(req.body)
   User.findById(req.params.id,  function(err, user) {
     if (err) return res.status(500).json({message: "Something went wrong!"});
     if (!user) return res.status(404).json({message: 'No user found.'});
 
-    if (req.body.email) user.local.email = req.body.name;
-    if (req.body.password) user.local.password = req.body.password;
+    if (req.body.user.local.fullname) user.local.fullname = req.body.user.local.fullname;
+    if (req.body.user.local.email) user.local.email = req.body.user.local.email;
 
-    user.save(function(err) {
+    user.save(function(err, user) {
+      console.log(user)
      if (err) return res.status(500).json({message: "Something went wrong!"});
 
       res.status(201).json({message: 'User successfully updated.', user: user});

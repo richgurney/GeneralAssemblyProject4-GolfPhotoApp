@@ -1,30 +1,55 @@
+<div id="margin" ng-controller="TournamentsController as tournament">
+  <h2>Your Tournaments</h2>
+  <button id="addTournamentButton" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dropFormAddTournament" aria-expanded="false" aria-controls="dropFormAddTournament">
+    Add Tournament
+  </button>
+  <div class="collapse" id="dropFormAddTournament">
+    <div class="well">
+      <form  ng-submit="tournament.addTournament()" id="newTournament">
+        <div class="form-group">
+          <input class="form-control" type="text" id="newTournament-name" ng-model="tournament.newTournament.name" placeholder="Tournament Name">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" id="newTournament-course" ng-model="tournament.newTournament.course" placeholder="Course">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" id="newTournament-des" ng-model="tournament.newTournament.description" placeholder="Tournament Description">
+        </div>
+        <div class="form-group">
+          <input class="form-control btn btn-default customButton" type="submit" value="Add">
+        </div>
+      </form>
+    </div>
+  </div>
+  
 
-<br>
-<br>
-<br>
-<h1>This is the tournaments page</h1>
-<div ng-controller="TournamentsController as tournament">
-  <form ng-submit="tournament.addTournament()" id="newTournament">
-    <div>
-      <input type="text" id="newTournament-name" ng-model="tournament.newTournament.name" placeholder="Tournament Name">
-    </div>
-    <div>
-      <input type="text" id="newTournament-course" ng-model="tournament.newTournament.course" placeholder="Course">
-    </div>
-    <div>
-      <input type="text" id="newTournament-des" ng-model="tournament.newTournament.description" placeholder="Tournament Description">
-    </div>
-    <div>
-      <input type="submit" value="Add Tournament">
-    </div>
-  </form>
+  
 
-  <li ng-repeat="event in tournament.usersTournaments" data-id="{{tournament._id}}">
-    <strong>{{event.name}}</strong>
-    <em>{{event.course}}</em> <span>{{event.description}}</span>
-    <a href="#" ng-click="tournament.editTournament(event)">Edit</a>
-    <a ui-sref="showTournament({ id: event._id})">Show Tournament</a>
-    <button class='delete' ng-click="tournament.deleteTournament(event)">Delete</button>
+  <div class="displayHeader" ng-repeat="event in tournament.usersTournaments" data-id="{{tournament._id}}">
+    <div class="tournament">
+      <strong>Tournament: </strong>{{event.name}}
+    </div>
+    <div class="tournament">
+      <strong>Course: </strong>{{event.course}}
+    </div> 
+    <div class="tournament">
+      <strong>Description: </strong>{{event.description}}
+    </div>       
+
+    <div class="displayHeaderSingle">
+      
+      
+      <a href="#" ng-click="tournament.editTournament(event)" data-target="#dropFormAddTournament" data-toggle="collapse">Edit</a>
+      <a ui-sref="showTournament({ id: event._id})">Show</a>
+      <!-- <a ui-sref="tournament.deleteTournament(event)">Delete</a> -->
+      <button class='deleteNav' ng-click="tournament.deleteTournament(event)">Delete</button>
+    </div>
+  </div>
+
+
+
+
+    
   </li>
 
 
