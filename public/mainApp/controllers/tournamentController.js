@@ -98,13 +98,7 @@ function TournamentsController(Tournament, User, $state, CurrentUser, $http){
   //   self.usersTournaments.splice(index, 1)
   // }
 
-  self.deleteImage = function(image){
-    Tournament.deleteImage({id: self.id, image: image}, function(res){
-      var index = self.selectedImages.indexOf(image);
-      self.selectedImages.splice(index, 1)
-    });
   
-  };
 
   
 

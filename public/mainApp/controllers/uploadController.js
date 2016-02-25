@@ -2,9 +2,10 @@ angular
   .module('golf-app')
   .controller('UploadController', UploadController);
 
-UploadController.$inject = ['Upload', 'Tournament', "$state", 'API'];
+UploadController.$inject = ["$scope",'Upload', 'Tournament', "$state", 'API'];
 
-function UploadController(Upload, Tournament, $state, API) {
+function UploadController($scope, Upload, Tournament, $state, API) {
+  
   var self = this;
 
   self.title                  = 'Uploads';
@@ -16,15 +17,28 @@ function UploadController(Upload, Tournament, $state, API) {
   self.holeNumber             = "";
   self.holeNotes              = "";
   self.url                    = "";
+
+  self.currentTournament      = [];
+  self.tournamentImages       = [];
   
+  self.getCurrentTournament = function(){
+    var one = Tournament.get({id: self.id}, function(){
+      self.currentTournament = one;
+      self.tournamentImages = self.currentTournament.images
+    })
+  }
+
+  self.getCurrentTournament()
+
+  self.bob = "bob";
   self.uploadSingle = function() {
     Upload.upload({
       url: API + '/upload/single',
       data: { file: self.file }
-    })
-    .then(function(res) {
+    }).then(function(res) {
+      self.bob = "tim"
       //this is the response
-      // console.log(res);
+      
       //this is the angular local picture
       // self.uploadedImages.push(res.data);
       // console.log(self.uploadedImages)
@@ -43,37 +57,14 @@ function UploadController(Upload, Tournament, $state, API) {
         notes:  self.holeNotes,
         url: self.url
       };
-      // console.log(newImage);
 
       Tournament.addImage({id: self.id, image: newImage}, function(res){
         console.log(res.image)
         image = res.image;
-        self.selectedImages.push(image);
-        console.log(self.selectedImages);
+        self.tournamentImages.push(image);
+        console.log(self.tournamentImages);
       });
-      
-      
-      
- //-------------------------------------------------//    
- // add an image to tournament
-   // self.addImageToTourn = function(){
-   //   var newImage = {
-   //     name: 'delete', // add the right info
-   //     url: 'delete'
-   //   };
-
-   //   Tournament.addImage({id: self.id, image: newImage}, function(res){
-   //     image = res.image;
-   //     self.selectedImages.push(image);
-   //     console.log(self.selectedImages);
-   //   });
-   // };
-
- //-----------------------------------------------//  
     })
-    .catch(function(err) {
-      console.error(err);
-    });
   }
 
   this.uploadMulti = function() {
@@ -90,4 +81,13 @@ function UploadController(Upload, Tournament, $state, API) {
       console.error(err);
     });
   }
+
+  self.deleteImage = function(image){
+    Tournament.deleteImage({id: self.id, image: image}, function(res){
+      var index = self.tournamentImages.indexOf(image);
+      self.tournamentImages.splice(index, 1)
+    });
+  
+  };
+
 }
