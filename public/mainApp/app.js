@@ -12,7 +12,7 @@ function MainRouter($stateProvider, $urlRouterProvider){
   $stateProvider
   .state('home', {
     url: "/",
-    templateUrl: "/mainApp/states/home.html",
+    templateUrl: "/mainApp/states/tournaments.html",
   })
   .state('register', {
     url: "/register",
