@@ -20,7 +20,7 @@ var multer        = require('multer');
 var s3            = require('multer-s3');
 var uuid          = require('uuid');
 
-mongoose.connect(process.env.MONGOLAN_URI || 'mongodb://localhost/golfapp');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/golfapp');
 
 require('./config/passport')(passport);
 
