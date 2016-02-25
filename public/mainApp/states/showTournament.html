@@ -3,25 +3,15 @@
 <br>
 <br>
 <br>
-<div id="showContainer" ng-controller="TournamentsController as show">
-	<h1>Tournament: {{show.selected.name }}</h1>
-	<h2>Course: {{show.selected.course}}</h2>
-	<h2>Description: {{show.selected.description}}</h2>
-	<button ng-click="show.addImageToTourn()">Add Photos</button>
-	<li ng-repeat="image in show.selectedImages" data-id="{{tournament._id}}">
-	  <strong>{{image.name}}</strong>
-	  <em>{{image.url}}</em> 
-	  <button class='delete' ng-click="show.deleteImage(image)">Delete</button>
-	</li>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
 <div ng-controller="UploadController as up">
   Upload single file on form submit
+
+<h1>Hole Number: {{up.holeNumber}}</h1>
+<h1>Hole Notes: {{up.holeNotes}}</h1>
+
  <form name="up.form" ng-submit="up.uploadSingle()">
+    <input type="text" name="hole"  ng-model="up.holeNumber" placeholder="Hole Number">
+    <input type="text" name="notes"  ng-model="up.holeNotes" placeholder="Notes">
     <input type="file"ngf-select ng-model="up.file" name="file">Select File</input>
     <button type="submit">Submit</button>
   </form>
@@ -31,11 +21,29 @@
     <button type="submit">Submit</button>
   </form> -->
 
-  <h1>{{up.title}}</h1>
+  <!-- <h1>{{up.title}}</h1>
   <li ng-repeat="image in up.uploadedImages">
     <img src="https://s3-eu-west-1.amazonaws.com/gurneytest/{{image.filename}}">
-    <h1>{{image.filename}}</h1>
-  </li>
+   
+  </li> -->
 
 <!--  <img src="https://s3-eu-west-1.amazonaws.com/gurneytest/uploads/57221500-db31-11e5-a4ad-ab837f683f19.png" -->
 </div>
+<div id="showContainer" ng-controller="TournamentsController as show">
+	<h1>Tournament: {{show.selected.name }}</h1>
+	<h2>Course: {{show.selected.course}}</h2>
+	<h2>Description: {{show.selected.description}}</h2>
+	<button ng-click="show.addImageToTourn()">Add Photos</button>
+	<li ng-repeat="image in show.selectedImages" data-id="{{tournament._id}}">
+	  <strong>Hole: {{image.hole}}</strong>
+	  <em>Notes: {{image.notes}}</em> 
+    <img src="https://s3-eu-west-1.amazonaws.com/gurneytest/{{image.url}}">
+	  <button class='delete' ng-click="show.deleteImage(image)">Delete</button>
+	</li>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
