@@ -1,19 +1,17 @@
 # Richard Gurney - GA Project Final Project - GOLF APP
 
+## Installation 
+ - git clone https://github.com/richgurney/Project-4-Golf-App.git
+ - npm install
+ - node app.js
+
 Golf App is a tool that can be used to document preparation for a golf tournaments. The app allows you to add a tournament that you might be playing and then go on to store photos that you take on the way around the course. It will give you a neat and clear database of your tournaments with images attached to them.
 
-User stories - Link Here
-
-Wireframes - link Here
-
-###GitHub -  <a href="https://github.com/richgurney/project2">https://github.com/richgurney/project2</a>
+###GitHub -  <a href="https://github.com/richgurney/Project-4-Golf-App">https://github.com/richgurney/Project-4-Golf-App</a>
 ###Beta Site - <a href="https://gurneygolfapp.herokuapp.com/">https://gurneygolfapp.herokuapp.com/</a>
-
----
+###Wireframes and Userstories - <a href="https://github.com/richgurney/Project-4-Golf-App/tree/master/planning">Planning</a>
 
 ## My Brief
-
----
 
 ### Technical Requirements
 
@@ -45,13 +43,6 @@ Your app must:
     * Link to your **wireframes** - sketches of major views / interfaces in your application
     * Link to your **pitch deck** - documentation of your wireframes, user stories, and proposed architecture
     * Descriptions of any **unsolved problems** or **major hurdles** you had to overcome
-
----
-
-###GitHub -  <a href="https://github.com/richgurney/project2">https://github.com/richgurney/project2</a>
-###Beta Site - <a href="https://stormy-garden-8334.herokuapp.com/">https://stormy-garden-8334.herokuapp.com/</a>
-
----
 
 ##Technologies Used
 * Javascript
