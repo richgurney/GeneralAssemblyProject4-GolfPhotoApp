@@ -1,7 +1,8 @@
-# Richard Gurney - GA Project Final Project - GOLF APP
+# Golf App
+## General Assembly Project 4 - MEAN Stack App
 
 ## Installation 
- - git clone https://github.com/richgurney/Project-4-Golf-App.git
+ - git clone https://github.com/richgurney/Golf-App.git
  - npm install
  - node app.js
 
