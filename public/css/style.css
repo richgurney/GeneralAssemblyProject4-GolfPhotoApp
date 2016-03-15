@@ -32,9 +32,7 @@ body {
 }
 
 #addTournamentButton:hover {
-	
 	background-color: rgba(9, 66, 9, 0.49);
-	
 }
 
 .displayHeader {
@@ -50,7 +48,6 @@ body {
   font-size: 16px;
   padding-top: 3px;
   height: 30px;
-
 }
 
 .displayHeaderSingle a {
@@ -107,7 +104,7 @@ body {
 #imageContainer {
   background-color: rgb(238, 238, 238);
   border: solid 1px rgba(9, 9, 10, 0.11);
-  height: 400px;
+  height: 525px;
   overflow: none
 }
 
