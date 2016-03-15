@@ -2,6 +2,22 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+html { 
+  background: url("images/background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  width: 98%;
+  margin: auto;
+  padding-bottom: 20px;
+  border-radius: 5px;
+}
+
+
 #dropFormAddTournament input {
 	width: 100%;
 }
@@ -22,19 +38,18 @@
 }
 
 .displayHeader {
-    margin-bottom: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.41);
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.41);
 }
 
 .displayHeaderSingle {
-	
-    width: 100%;
-    background-color: rgba(128, 128, 128, 0.37);
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    padding-top: 3px;
-    height: 30px;
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.37);
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 3px;
+  height: 30px;
 
 }
 
@@ -43,10 +58,10 @@
 }
 
 .tournament {
-    font-size: 15px;
-    background-color: rgba(128, 128, 128, 0.17);
-    border: 1px solid rgba(0, 0, 0, 0.02);
-    text-align: center;
+  font-size: 15px;
+  background-color: rgba(128, 128, 128, 0.17);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  text-align: center;
 }
 
 #container {
@@ -55,7 +70,8 @@
 }
 
 #margin {
-	margin-top: 80px;
+	margin-top: 58px;
+  padding: 5px;
 }
 
 .customButton {
@@ -70,14 +86,13 @@
 
 .deleteNav {
 	display: inline-block;
-    position: absolute;
-    padding-top: 0px;
-    padding-left: 6px;
-    background-color: rgba(255, 0, 0, 0);
-    border: none;
-    color: rgba(255, 0, 0, 0.52);
-    /* float: left; */
-    right: 8%;
+  position: absolute;
+  padding-top: 0px;
+  padding-left: 6px;
+  background-color: rgba(255, 0, 0, 0);
+  border: none;
+  color: rgba(255, 0, 0, 0.52);
+  right: 10%;
 }
 
 .deleteNav:hover {
@@ -86,32 +101,84 @@
 
 #jumboStyle {
 	text-align: center;
+  margin-top: 15px;
 }
 
 #imageContainer {
-
-    background-color: rgb(238, 238, 238);
-    border: solid 1px rgba(9, 9, 10, 0.11);
-    height: 400px;
-    overflow: none
-	
+  background-color: rgb(238, 238, 238);
+  border: solid 1px rgba(9, 9, 10, 0.11);
+  height: 400px;
+  overflow: none
 }
 
 .image {
 	text-align: center;
-	height: 300px;
 }
 
 .delete {
-	position: absolute;
-	bottom: 5%;
-	padding-top: 0px;
-	padding-left: 6px;
-	background-color: rgba(255, 0, 0, 0);
+	background-color: rgb(187, 57, 57);
 	border: none;
-	color: rgba(255, 0, 0, 0.52);
+}
+
+.deleteButton {
+	position: absolute;
+  width: 100px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgba(175, 15, 15, 0.81);
+  border: none;
+  margin-top: 25px;
+  color: white;
+  text-align: center;
+  bottom: 0px;
+  margin-bottom: 15px;
 }
 
 .imageSize {
-	height: 100%;
+	width: 100%;
+  margin-top: 15px;
 }
+
+/*=====================Bootstrap Styling==================*/
+
+.customNav {
+  background-color: #000000;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav li a {
+  color: white;
+}
+
+.navbar-default .navbar-nav li a:hover {
+  color: #85B768;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav li a:focus {
+  color: #85B768;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #85B768;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-brand:focus {
+  color: #85B768;
+  background-color: transparent;
+}
+
+.default .navbar-brand:hover {
+  color: #85B768;
+  background-color: transparent;
+}
+
+/*.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: black;
+    background-color: transparent;
+}*/

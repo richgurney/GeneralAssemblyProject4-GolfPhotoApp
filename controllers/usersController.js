@@ -18,8 +18,6 @@ function usersShow(req, res){
 }
 
 // function usersShow(req, res){
-
-
 //   User.findById(req.params.id, function(err, user){
 //     if (err) return res.status(404).json({message: 'Something went wrong.'});
 //     res.status(200).json({ user: user });
@@ -27,7 +25,7 @@ function usersShow(req, res){
 // }
 
 function usersUpdate(req, res){
-  console.log(req.body)
+  // console.log(req.body)
   User.findById(req.params.id,  function(err, user) {
     if (err) return res.status(500).json({message: "Something went wrong!"});
     if (!user) return res.status(404).json({message: 'No user found.'});
@@ -36,7 +34,7 @@ function usersUpdate(req, res){
     if (req.body.user.local.email) user.local.email = req.body.user.local.email;
 
     user.save(function(err, user) {
-      console.log(user)
+      // console.log(user)
      if (err) return res.status(500).json({message: "Something went wrong!"});
 
       res.status(201).json({message: 'User successfully updated.', user: user});

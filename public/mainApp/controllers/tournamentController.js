@@ -2,8 +2,8 @@ angular
   .module('golf-app')
   .controller('TournamentsController', TournamentsController);
 
-TournamentsController.$inject = ["Tournament", "User", "$state", "CurrentUser", "$http"];
-function TournamentsController(Tournament, User, $state, CurrentUser, $http){
+TournamentsController.$inject = ["Tournament", "User", "TokenService", "$state", "CurrentUser", "$http"];
+function TournamentsController(Tournament, User, TokenService, $state, CurrentUser, $http){
   var self = this;
 
   self.all                    = [];
@@ -17,10 +17,13 @@ function TournamentsController(Tournament, User, $state, CurrentUser, $http){
 
   // get all the current users tournaments
   self.getUsersTournaments = function(){
-    var userTourn = User.get({id: CurrentUser.currentUser()._id}, function(){
+    if(TokenService.getToken()){
+      var userTourn = User.get({id: CurrentUser.currentUser()._id}, function(){
       self.usersTournaments = userTourn.tournaments;
-      
     })
+    } else {
+      $state.go('login');
+    }
   }
   
   // gets the tournament that you clicked

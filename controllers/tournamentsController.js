@@ -2,8 +2,6 @@
 var Tournament = require("../models/tournament")
 var User = require("../models/user");
 
-
-
 // function addImageToTourn(req, res){
 //   console("hitting the back end")
 //   res.send('hello')
@@ -18,7 +16,6 @@ var User = require("../models/user");
 //   // })
 // }
 
-
 function addImage(req, res){
     var id = req.params.id
     var image = req.body.image
@@ -31,7 +28,7 @@ function addImage(req, res){
 }
 
 function deleteImage(req, res){
-  console.log("this is the backend")
+  // console.log("this is the backend")
 
   var id = req.body.id
   var image = req.body.image
@@ -44,13 +41,11 @@ function deleteImage(req, res){
     tourn.save();
     res.status(200).send()
 
-    console.log(tourn.images)
+    // console.log(tourn.images)
 
   })
   
 }
-
-
 
 function tournamentsIndex(req, res , next){
   Tournament.find({}, function(err, tournaments) {
