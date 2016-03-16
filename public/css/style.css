@@ -49,7 +49,7 @@ body {
   width: 100%;
   background-color: rgba(128, 128, 128, 0.37);
   color: black;
-  text-align: center;
+  text-align: left;
   font-size: 16px;
   padding-top: 3px;
   height: 30px;
@@ -95,6 +95,7 @@ body {
   border: none;
   color: rgba(255, 0, 0, 0.52);
   right: 9px;
+  float: right;
 }
 
 .deleteNav:hover {
