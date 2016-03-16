@@ -43,7 +43,7 @@ function UploadController($scope, Upload, Tournament, $state, API) {
       // self.uploadedImages.push(res.data);
       // console.log(self.uploadedImages)
       //success console
-      console.log("Success!");
+      // console.log("Success!");
       // current tournament id is accessible
       // console.log(self.id);
       // getting the url from response
@@ -59,10 +59,12 @@ function UploadController($scope, Upload, Tournament, $state, API) {
       };
 
       Tournament.addImage({id: self.id, image: newImage}, function(res){
-        console.log(res.image)
+        // console.log(res.image)
         image = res.image;
         self.tournamentImages.push(image);
-        console.log(self.tournamentImages);
+        self.holeNumber = "";
+        self.holeNotes  = "";
+        // console.log(self.tournamentImages);
       });
     })
   }
