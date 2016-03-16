@@ -88,13 +88,13 @@ body {
 
 .deleteNav {
 	display: inline-block;
-  position: absolute;
+  position: relative;
   padding-top: 0px;
   padding-left: 6px;
   background-color: rgba(255, 0, 0, 0);
   border: none;
   color: rgba(255, 0, 0, 0.52);
-  right: 10%;
+  right: 9px;
 }
 
 .deleteNav:hover {
@@ -152,6 +152,17 @@ body {
 @media (max-width:499px){
   .imageSize {
     width: 100%;
+  }
+}
+
+@media (min-width:499px){
+  body {
+    width: 65%;
+    margin: auto;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
