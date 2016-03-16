@@ -140,6 +140,12 @@ body {
   margin-top: 15px;
 }
 
+@media (max-width:499px){
+  .imageSize {
+    width: 100%;
+  }
+}
+
 /*=====================Bootstrap Styling==================*/
 
 .customNav {
