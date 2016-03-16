@@ -21,10 +21,6 @@
       </form>
     </div>
   </div>
-  
-
-  
-
   <div class="displayHeader" ng-repeat="event in tournament.usersTournaments" data-id="{{tournament._id}}">
     <div class="tournament">
       <strong>Tournament: </strong>{{event.name}}
@@ -35,22 +31,11 @@
     <div class="tournament">
       <strong>Description: </strong>{{event.description}}
     </div>       
-
     <div class="displayHeaderSingle">
-      
-      
       <a href="#" ng-click="tournament.editTournament(event)" data-target="#dropFormAddTournament" data-toggle="collapse">- Edit -</a>
       <a ui-sref="showTournament({ id: event._id})">Show -</a>
       <!-- <a ui-sref="tournament.deleteTournament(event)">Delete</a> -->
       <button class='deleteNav' ng-click="tournament.deleteTournament(event)">Delete</button>
     </div>
   </div>
-
-
-
-
-    
-  </li>
-
-
 </div>

@@ -17,7 +17,6 @@ function UploadController($scope, Upload, Tournament, $state, API) {
   self.holeNumber             = "";
   self.holeNotes              = "";
   self.url                    = "";
-
   self.currentTournament      = [];
   self.tournamentImages       = [];
   
@@ -30,45 +29,29 @@ function UploadController($scope, Upload, Tournament, $state, API) {
 
   self.getCurrentTournament()
 
-  self.bob = "bob";
+  // upload a single image
   self.uploadSingle = function() {
     Upload.upload({
       url: API + '/upload/single',
       data: { file: self.file }
     }).then(function(res) {
-      self.bob = "tim"
-      //this is the response
-      
-      //this is the angular local picture
-      // self.uploadedImages.push(res.data);
-      // console.log(self.uploadedImages)
-      //success console
-      // console.log("Success!");
-      // current tournament id is accessible
-      // console.log(self.id);
-      // getting the url from response
-      // console.log(res.data.filename)
       self.url = res.data.filename
-      // console.log(self.url)
-
       // storing an image object in the tournament doc
       var newImage = {
         hole:   self.holeNumber, // add the right info
         notes:  self.holeNotes,
-        url: self.url
+        url:    self.url
       };
-
       Tournament.addImage({id: self.id, image: newImage}, function(res){
-        // console.log(res.image)
         image = res.image;
         self.tournamentImages.push(image);
         self.holeNumber = "";
         self.holeNotes  = "";
-        // console.log(self.tournamentImages);
       });
     })
   }
 
+  // upload mulitiply images
   this.uploadMulti = function() {
     Upload.upload({
       url: APIs + '/upload/multi',

@@ -18,8 +18,8 @@ function UsersController(User, TokenService, $state, CurrentUser){
   self.getCurrentUser= getCurrentUser;
   self.deleteUser    = deleteUser;
   self.editUser      = editUser;
-
   self.currentUser = {}
+
 
   function getCurrentUser(){
     if (self.currentUser == CurrentUser.currentUser()) {
@@ -43,7 +43,7 @@ function UsersController(User, TokenService, $state, CurrentUser){
      $state.go('login');
    }
 
-   // Fill the form to edit a Character
+   // Fill the form to edit a user
    function editUser(){
      User.edit({user: self.currentUser, id: CurrentUser.currentUser()._id}, function(res) {
       CurrentUser.saveUser(res.user);
@@ -51,6 +51,7 @@ function UsersController(User, TokenService, $state, CurrentUser){
      })
    }
 
+   // fucntion to handle login 
   function handleLogin(res) {
     var token = res.token ? res.token : null;
     if (token) {

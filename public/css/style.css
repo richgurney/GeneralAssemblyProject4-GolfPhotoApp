@@ -17,6 +17,11 @@ body {
   border-radius: 5px;
 }
 
+#welcome {
+  background-color: red;
+  width: 100%;
+  height: 100px;
+}
 
 #dropFormAddTournament input {
 	width: 100%;
@@ -74,11 +79,11 @@ body {
 .customButton {
 	background-color: rgba(56, 138, 9, 0.61);
 	border-color: rgba(54, 76, 95, 0.93);
+  margin-bottom: 10px;
 }
 
 .customButton:hover {
 	background-color: rgba(9, 66, 9, 0.49);
-	
 }
 
 .deleteNav {
@@ -138,6 +143,10 @@ body {
 .imageSize {
 	height: 100%;
   margin-top: 15px;
+}
+
+.alert {
+  margin-top: 20px;
 }
 
 @media (max-width:499px){

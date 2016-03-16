@@ -102,7 +102,6 @@ function TournamentsController(Tournament, User, TokenService, $state, CurrentUs
   // }
 
   
-
   
 
 

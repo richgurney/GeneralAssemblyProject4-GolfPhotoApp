@@ -27,6 +27,7 @@
   </head>
   <body ng-controller="UsersController as users">
     <div id="backgroundCover"></div>
+    <!-- NavBar -->
     <nav id="navStyle" class="navbar navbar-default customNav navbar-fixed-top">
        <div class="container-fluid">
          <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,16 +43,17 @@
          <!-- Collect the nav links, forms, and other content for toggling -->
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
            <ul class="nav navbar-nav">
-             <li class="loggedIn navText" ng-hide="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#"ui-sref="login">Login</a></li> 
-             <li class="loggedIn navText" ng-show="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ng-click="users.logout()">Logout</a></li> 
-             <li class="loggedIn navText" ng-hide="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ui-sref="register">Register</a></li> 
-             <li class="loggedIn navText" ng-show="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ui-sref="tournaments">Tournaments</a></li>
-             <li class="loggedIn navText" ng-show="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ui-sref="profile">Profile</a></li>
+            <li class="loggedIn navText" ng-hide="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#"ui-sref=" login">Login</a></li> 
+            <li class="loggedIn navText" ng-show="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ng-click=" users.logout()">Logout</a></li> 
+            <li class="loggedIn navText" ng-hide="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ui-sref=" register">Register</a></li> 
+            <li class="loggedIn navText" ng-show="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ui-sref=" tournaments">Tournaments</a></li>
+            <li class="loggedIn navText" ng-show="users.checkLoggedIn()"><a data-toggle="collapse" data-target=".navbar-collapse"  href="#" ui-sref=" profile">Profile</a></li>
            </ul>
          </div><!-- /.navbar-collapse -->
        </div><!-- /.container-fluid -->
-     </nav>
+      </nav>
       <div id="Tourny"></div>
+      <!-- Section Container -->
       <section id="container" ui-view></section>
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>    
   </body>
