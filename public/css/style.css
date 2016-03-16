@@ -153,6 +153,15 @@ body {
   .imageSize {
     width: 100%;
   }
+
+  body {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .alert {
+    margin-top: 7px;
+  }
 }
 
 @media (min-width:499px){
